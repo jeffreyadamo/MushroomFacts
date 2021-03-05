@@ -10,14 +10,14 @@ Initiated: 3/3/2021
 
 ~~~
 	USER STORY:
-		○ AS A USER of mushroom website
+		○ AS A USER of a mushroom website
 		○ I WANT TO be able to search by mushroom name (Genus Species)
 		○ SO THAT I receive data about that specific mushroom
 ~~~
 
 Initial goals of this project:  
 ~~~
-	• Utilize ReactJS framework to utilize fast DOM updates (good responsiveness)
+	• Utilize ReactJS framework for fast DOM updates (good responsiveness upon search)
 		○ Practice building React.js app deployment
 		○ MySQL rdms
 		  §  KnexJS/ObjectionJS vs SequelizeJS?
@@ -32,9 +32,9 @@ Initial goals of this project:
 	
 	• Learn how large of datasets I can utilize
 		○ I'm used to 100-1000s of entries to query, not 100k
-		○ How does local performance take a hit
+		○ How does local performance take a hit?
 			§ May need to utilize indexing in database sets
-			
+
 	• Performance goal: lazy loading
 	• Stretch goal: Test Driven Development 
 ~~~
