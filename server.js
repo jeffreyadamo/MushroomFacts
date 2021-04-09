@@ -27,5 +27,5 @@ require('./routes/api-routes.js')(app);
 
 app.listen(PORT, () => {
   console.log(`App listening on PORT ${PORT}`);
-  console.log('Starting React app on PORT:3000')
+  console.log('React frontend is at on localhost:3000')
 });
