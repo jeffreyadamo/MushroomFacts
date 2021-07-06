@@ -21,3 +21,6 @@
 .env.production.local
 
 npm-debug.log*
+
+./server/src/lib/taxa.csv
+\server\src\lib\taxa.csv
