@@ -1,4 +1,4 @@
-iNatID,taxonID,identifier,parentNameUsageID,kingdom,phylum,class,order,family,genus,specificEpithet,infraspecificEpithet,modified,scientificName,taxonRank,references
+iNatID,taxonID,identifier,parentNameUsageID,kingdom,phylum,className,order,family,genus,specificEpithet,infraspecificEpithet,modified,scientificName,taxonRank,references
 1,https://www.inaturalist.org/taxa/1,https://www.inaturalist.org/taxa/1,https://www.inaturalist.org/taxa/48460,Animalia,,,,,,,,2020-06-23T23:26:20Z,Animalia,kingdom,http://www.catalogueoflife.org/annual-checklist/2013/browse/tree/id/13021388
 2,https://www.inaturalist.org/taxa/2,https://www.inaturalist.org/taxa/2,https://www.inaturalist.org/taxa/1,Animalia,Chordata,,,,,,,2020-06-23T23:06:02Z,Chordata,phylum,http://www.catalogueoflife.org/annual-checklist/2013/browse/tree/id/13021451
 3,https://www.inaturalist.org/taxa/3,https://www.inaturalist.org/taxa/3,https://www.inaturalist.org/taxa/355675,Animalia,Chordata,Aves,,,,,,2020-02-07T21:46:10Z,Aves,class,http://www.catalogueoflife.org/annual-checklist/browse/tree/id/2340272
