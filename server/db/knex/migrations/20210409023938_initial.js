@@ -4,95 +4,21 @@ const Knex = require('knex');
  * @param {Knex} knex
 */
 const tableNames = require('../../../src/constants/tableNames');
+const {
+  createTable,
+  createTableWithReference,
+} = require('../../../src/lib/tableUtils');
 
-function addDefaultColumns(table) {
-  table.timestamps(false, true); // adds 'created_at' & 'updated_at'
-  table.datetime('deleted_at');
-}
-
-// function createTable(knex, table_name) {
-//   knex.schema.createTable(table_name, (table) => {
-//     table.increments().notNullable().unique();
-//     table.string('name', 50).notNullable().unique();
-//     addDefaultColumns(table);
-// });
-// }
-
-
-function references(table, tableName) {
-  table
-    .integer(`${tableName}_id`)
-    .unsigned()
-    .references('id')
-    .inTable(tableName)
-    .onDelete('cascade');
-}
 exports.up = async (knex) => {
-  // await Promise.all([
-  // createTable(knex, tableNames.life),
-  // createTable(knex, tableNames.domain), 
-  // createTable(knex, tableNames.kingdom),
-  // createTable(knex, tableNames.phylum),
-  // createTable(knex, tableNames.class),
-  // createTable(knex, tableNames.family),
-  // createTable(knex, tableNames.genus),
-  // createTable(knex, tableNames.species),
-  // ]);
-  // await knex.schema.createTable(tableNames.life, (table) => {
-  //    table.increments().notNullable().unique();
-  //    table.string('name', 100).notNullable().unique();
-  //    addDefaultColumns(table);
-  //  });
-
-  await knex.schema.createTable(tableNames.domain, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-  });
-
-  await knex.schema.createTable(tableNames.kingdom, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.domain);
-  });
-
-  await knex.schema.createTable(tableNames.phylum, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.kingdom); 
-  });
-
-  await knex.schema.createTable(tableNames.class, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.phylum); 
-  });
-
-  await knex.schema.createTable(tableNames.family, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.class); 
-  });
-
-  await knex.schema.createTable(tableNames.genus, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.family); 
-  });
-
-  await knex.schema.createTable(tableNames.species, (table) => {
-    table.increments().notNullable().unique();
-    table.string('name', 100).notNullable().unique();
-    addDefaultColumns(table);
-    references(table, tableNames.genus); 
-  });
-
-
+  await Promise.all([
+  createTable(knex, tableNames.domain), 
+  createTableWithReference(knex, tableNames.kingdom, tableNames.domain),
+  createTableWithReference(knex, tableNames.phylum, tableNames.kingdom),
+  createTableWithReference(knex, tableNames.class, tableNames.phylum),
+  createTableWithReference(knex, tableNames.family, tableNames.class),
+  createTableWithReference(knex, tableNames.genus, tableNames.family),
+  createTableWithReference(knex, tableNames.species, tableNames.genus),
+  ]);
 };
 
 exports.down = async (knex) => {

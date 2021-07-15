@@ -1,5 +1,5 @@
 const iNatObj = {
-  id: "id",
+  iNatID: "iNatID",
   taxonID: "taxonID",
   identifier: "identifier",
   parentNameUsageID: "parentNameUsageID",
