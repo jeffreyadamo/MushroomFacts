@@ -16,6 +16,7 @@ const species = require('../../../src/constants/species');
 */
 
 exports.seed = async (knex) => {
+  console.log("Kingdoms object", kingdoms);
   // Deletes ALL existing entries
   // ===========================================================
   // Drop data in table without deleting tables before seeding new or repeat data
@@ -71,6 +72,8 @@ exports.seed = async (knex) => {
   console.log("Families created", { createdFamilies });
   console.log("Genus created", { createdGenus });
   console.log("Species created", { createdSpecies });
+
+
 
   await knex(tableNames.phylum)
     .where('name', '')

@@ -7,4 +7,5 @@ module.exports = {
   family: "family",
   genus: "genus",
   species: "species",
+  taxa: "taxa"
 };

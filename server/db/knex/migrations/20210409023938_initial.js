@@ -20,10 +20,12 @@ exports.up = async (knex) => {
   createTableWithReference(knex, tableNames.genus, tableNames.family),
   createTableWithReference(knex, tableNames.species, tableNames.genus),
   ]);
+
 };
 
 exports.down = async (knex) => {
   await Promise.all([
+    tableNames.taxa,
     tableNames.species,
     tableNames.genus,
     tableNames.family,
@@ -31,6 +33,6 @@ exports.down = async (knex) => {
     tableNames.class,
     tableNames.phylum,
     tableNames.kingdom,
-    tableNames.domain,
+    tableNames.domain
   ].map((tableName) => knex.schema.dropTableIfExists(tableName)));
 }

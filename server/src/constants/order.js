@@ -1,20 +1,16 @@
-/* eslint-disable no-undef */
-const fs = require('fs');
-const path = require('path');
 const Papa = require('papaparse');
-
-const csvData = fs.readFileSync(
-  path.join(__dirname, '../../db/knex/seeds/taxaExample.csv'),
-  'utf8',
-);
+const csvData = require('./csvData');
 
 const orders = Papa.parse(csvData, {
   header: true,
   skipEmptyLines: true,
 });
 
-module.exports = orders.data.map(({
-  order,
-}) => ({
-  name: order
-}));
+module.exports = orders.data
+  .map(({ order }) => ({
+    name: order,
+  }))
+  .filter(
+    (item, index, array) =>
+      index === array.findIndex((t) => t.name === item.name && t.id === item.id)
+  );
