@@ -7,8 +7,9 @@ const phylums = Papa.parse(csvData, {
 });
 
 module.exports = phylums.data
-  .map(({ phylum }) => ({
+  .map(({ phylum, kingdom }) => ({
     name: phylum,
+    kingdom_name: kingdom,
   }))
   .filter(
     (item, index, array) =>
