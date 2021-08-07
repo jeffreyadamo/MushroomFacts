@@ -1,17 +1,6 @@
 /* eslint-disable no-undef */
-const fs = require('fs');
-const path = require('path');
 const Papa = require('papaparse');
-
-const csvData = fs.readFileSync(
-  path.join(__dirname, '../../db/knex/seeds/taxaExample.csv'),
-  'utf8',
-);
-
-// const csvData = fs.readFileSync(
-//   path.join(__dirname, '../../../../mushroom/taxa/taxa.csv'),
-//   'utf8',
-// );
+const csvData = require('./csvData')
 
 const classes = Papa.parse(csvData, {
   header: true,
@@ -20,10 +9,12 @@ const classes = Papa.parse(csvData, {
 
 module.exports = classes.data.map(({
   className,
+  phylum
 }) => ({
-  name: className
-})).filter((item, index, array) =>
-index === array.findIndex((t) => (
-  t.name === item.name && t.id === item.id
-))
+  name: className,
+  phylum_name: phylum,
+}))
+.filter(
+  (item, index, array) =>
+    index === array.findIndex((t) => t.name === item.name && t.id === item.id)
 );

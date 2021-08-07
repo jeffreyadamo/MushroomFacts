@@ -6,6 +6,7 @@ module.exports = [
   tableNames.species,
   tableNames.genus,
   tableNames.family,
+  tableNames.order,
   tableNames.class,
   tableNames.phylum,
   tableNames.kingdom,

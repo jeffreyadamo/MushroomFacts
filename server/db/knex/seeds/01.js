@@ -1,7 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 const Knex = require('knex');
-// const crypto = require('crypto');
-// const bcrypt = require('bcrypt');
 const tableNames = require('../../../src/constants/tableNames');
 const orderedTableNames = require('../../../src/constants/orderedTableNames');
 const kingdoms = require('../../../src/constants/kingdom');
@@ -15,6 +13,17 @@ const phylums = require('../../../src/constants/phylum');
  * @param {Knex} knex
 */
 
+
+const createPhylumPromises = [];
+const mapPhylum = (knex, phylums) => {
+  phylums.forEach((phylums) => {
+    const phylum_parent = phylums.kingdom_name;
+    if (phylums.name != '') {
+      console.log('kingdom_name', phylum_parent);
+      createPhylumPromises.push(createPhylum(knex, phylums, phylum_parent));
+    }    
+  });
+}
 
 const createPhylum = async (knex, phylum, kingdom) => {
   console.log({
@@ -70,15 +79,9 @@ exports.seed = async (knex) => {
   console.log('createdDomains', createdDomains);
   console.log('createdKingdoms', createdKingdoms);
  
-  const createPhylumPromises = [];
 
-  await phylums.forEach((phylums) => {
-    const phylum_parent = phylums.kingdom_name;
-    if (phylums.name != '') {
-      console.log('kingdom_name', phylum_parent);
-      createPhylumPromises.push(createPhylum(knex, phylums, phylum_parent));
-    }    
-  });
+
+  await mapPhylum(knex, phylums);
 
   return Promise.all(createPhylumPromises);
 

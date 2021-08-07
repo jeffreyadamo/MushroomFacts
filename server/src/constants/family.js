@@ -7,8 +7,12 @@ const families = Papa.parse(csvData, {
 });
 
 module.exports = families.data
-  .map(({ family }) => ({
+  .map(({ 
+    family,
+    order
+   }) => ({
     name: family,
+    parent: order
   }))
   .filter(
     (item, index, array) =>

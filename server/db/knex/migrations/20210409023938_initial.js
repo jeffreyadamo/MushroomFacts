@@ -16,7 +16,7 @@ exports.up = async (knex) => {
   createTableWithReference(knex, tableNames.phylum, tableNames.kingdom),
   createTableWithReference(knex, tableNames.class, tableNames.phylum),
   createTableWithReference(knex, tableNames.order, tableNames.class),
-  createTableWithReference(knex, tableNames.family, tableNames.class),
+  createTableWithReference(knex, tableNames.family, tableNames.order),
   createTableWithReference(knex, tableNames.genus, tableNames.family),
   createTableWithReference(knex, tableNames.species, tableNames.genus),
   ]);

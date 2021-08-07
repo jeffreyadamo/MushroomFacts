@@ -7,8 +7,12 @@ const species = Papa.parse(csvData, {
 });
 
 module.exports = species.data
-  .map(({ specificEpithet }) => ({
+  .map(({ 
+    specificEpithet,
+    genus
+   }) => ({
     name: specificEpithet,
+    parent: genus
   }))
   .filter(
     (item, index, array) =>

@@ -7,8 +7,12 @@ const genus = Papa.parse(csvData, {
 });
 
 module.exports = genus.data
-  .map(({ genus }) => ({
+  .map(({ 
+    genus,
+    family 
+  }) => ({
     name: genus,
+    parent: family
   }))
   .filter(
     (item, index, array) =>
